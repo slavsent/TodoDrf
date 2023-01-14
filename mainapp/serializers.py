@@ -5,11 +5,12 @@ from .models import User, Project, TODO
 class UserModelSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'firstname', 'lastname', 'email',)
+        fields = '__all__'
+        # fields = ('username', 'firstname', 'lastname', 'email',)
 
 
 class ProjectModelSerializer(HyperlinkedModelSerializer):
-    users = UserModelSerializer(many=True)
+    # users = UserModelSerializer(many=True)
 
     class Meta:
         model = Project
@@ -17,8 +18,8 @@ class ProjectModelSerializer(HyperlinkedModelSerializer):
 
 
 class TODOModelSerializer(HyperlinkedModelSerializer):
-    user = UserModelSerializer()
-    project = ProjectModelSerializer()
+    # user = UserModelSerializer()
+    # project = ProjectModelSerializer()
 
     class Meta:
         model = TODO
