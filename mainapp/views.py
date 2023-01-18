@@ -20,24 +20,25 @@ class TodoimitOffsetPagination(LimitOffsetPagination):
     default_limit = 20
 
 
-class UserModelViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, GenericViewSet):
+# class UserModelViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, GenericViewSet):
+class UserModelViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
-    pagination_class = UserLimitOffsetPagination
-    filterset_class = UserFilter
+#    pagination_class = UserLimitOffsetPagination
+#    filterset_class = UserFilter
 
 
 class ProjectModelViewSet(ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
-    pagination_class = ProjectLimitOffsetPagination
+ #   pagination_class = ProjectLimitOffsetPagination
     filterset_class = ProjectFilter
 
 
 class TODOModelViewSet(ModelViewSet):
     queryset = TODO.objects.all()
     serializer_class = TODOModelSerializer
-    pagination_class = TodoimitOffsetPagination
+ #   pagination_class = TodoimitOffsetPagination
     filterset_class = TodoFilter
 
     def destroy(self, request, pk=None, *args, **kwargs):

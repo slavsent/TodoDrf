@@ -1,4 +1,5 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
 
 const UserItem = ({user}) => {
@@ -21,7 +22,10 @@ const UserItem = ({user}) => {
 }
 
 
-const UserList = ({users}) => {
+const UserInfoList = ({users}) => {
+    let { username } = useParams();
+    let filtered_items = users.filter((user) => user.username === username)
+
     return (
         <table>
             <th>
@@ -36,10 +40,10 @@ const UserList = ({users}) => {
             <th>
                 Email
             </th>
-            {users.map((user) => <UserItem user={user} />)}
+            {filtered_items.map((user) => <UserItem user={user} />)}
         </table>
     )
 }
 
 
-export default UserList
+export default UserInfoList
