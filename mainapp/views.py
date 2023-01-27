@@ -32,7 +32,12 @@ class ProjectModelViewSet(ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
  #   pagination_class = ProjectLimitOffsetPagination
-    filterset_class = ProjectFilter
+ #   filterset_class = ProjectFilter
+
+ #   def get_serializer_class(self):
+ #       if self.request.method in ['GET']:
+ #           return ProjectModelSerializerAny
+ #       return ProjectModelSerializer
 
 
 class TODOModelViewSet(ModelViewSet):
