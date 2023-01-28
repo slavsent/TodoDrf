@@ -1,15 +1,15 @@
-from rest_framework.serializers import HyperlinkedModelSerializer, ValidationError
+from rest_framework.serializers import HyperlinkedModelSerializer, ValidationError, ModelSerializer
 from .models import User, Project, TODO
 
 
-class UserModelSerializer(HyperlinkedModelSerializer):
+class UserModelSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
         # fields = ('username', 'firstname', 'lastname', 'email',)
 
 
-class ProjectModelSerializer(HyperlinkedModelSerializer):
+class ProjectModelSerializer(ModelSerializer):
     # users = UserModelSerializer(many=True)
 
     class Meta:
