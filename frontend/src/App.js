@@ -107,15 +107,15 @@ class App extends React.Component {
                     <BrowserRouter>
                         <nav>
                             <ul>
-                                <li><Link to="/" target="_top">Home</Link></li>
-                                <li><Link to="/users" target="_top">Users</Link></li>
-                                <li><Link to="/projects" target="_top">Projects</Link></li>
-                                <li><Link to="/todos" target="_top">ToDos</Link></li>
-                                <li><Link to="/username" target="_top">Username</Link></li>
-                                <li><Link to="/projectname" target="_top">Project name</Link></li>
+                                <li><Link to="/" >Home</Link></li>
+                                <li><Link to="/users" >Users</Link></li>
+                                <li><Link to="/projects" >Projects</Link></li>
+                                <li><Link to="/todos" >ToDos</Link></li>
+                                <li><Link to="/username" >Username</Link></li>
+                                <li><Link to="/projectname" >Project name</Link></li>
                                 <li>
-                                    {this.is_authenticated() ? <button onClick={()=>this.logout()} target="_top">Logout</button>
-                                     : <Link to='/login' target="_top">Login</Link>}
+                                    {this.is_authenticated() ? <button onClick={()=>this.logout()} >Logout</button>
+                                     : <Link to='/login' >Login</Link>}
                                 </li>
                             </ul>
                         </nav>
