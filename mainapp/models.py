@@ -8,6 +8,8 @@ class User(models.Model):
     firstname = models.CharField(max_length=64)
     lastname = models.CharField(max_length=64)
     email = models.EmailField(max_length=64, unique=True)
+    is_superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
 
 class Project(models.Model):

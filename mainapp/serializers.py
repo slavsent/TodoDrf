@@ -6,7 +6,14 @@ class UserModelSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
-        # fields = ('username', 'firstname', 'lastname', 'email',)
+        # fields = ('id', 'username', 'firstname', 'lastname', 'email',)
+
+
+class UserModelSerializerV1(ModelSerializer):
+    class Meta:
+        model = User
+        # fields = '__all__'
+        fields = ('id', 'username', 'firstname', 'lastname', 'email',)
 
 
 class ProjectModelSerializer(ModelSerializer):
