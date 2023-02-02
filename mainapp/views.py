@@ -1,11 +1,12 @@
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.response import Response
 from .models import User, Project, TODO
-from .serializers import UserModelSerializer, ProjectModelSerializer, TODOModelSerializer
+from .serializers import UserModelSerializer, ProjectModelSerializer, TODOModelSerializer, UserModelSerializerV1
 from rest_framework.pagination import LimitOffsetPagination
 from .filters import TodoFilter, UserFilter, ProjectFilter
 from rest_framework import mixins
 from rest_framework import status
+from rest_framework import generics
 
 
 class UserLimitOffsetPagination(LimitOffsetPagination):
@@ -61,3 +62,13 @@ class TODOModelViewSet(ModelViewSet):
                 return Response(data=serializer.data, status=status.HTTP_200_OK)
             else:
                 return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserListAPIView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserModelSerializer
+
+    def get_serializer_class(self):
+        if self.request.version == '2':
+            return UserModelSerializer
+        return UserModelSerializerV1
