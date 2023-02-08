@@ -24,7 +24,7 @@ class ProjectModelSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class TODOModelSerializer(HyperlinkedModelSerializer):
+class TODOModelSerializer(ModelSerializer):
     # user = UserModelSerializer()
     # project = ProjectModelSerializer()
 
