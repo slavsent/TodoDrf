@@ -45,7 +45,7 @@ class TODOModelViewSet(ModelViewSet):
     queryset = TODO.objects.all()
     serializer_class = TODOModelSerializer
  #   pagination_class = TodoimitOffsetPagination
-    filterset_class = TodoFilter
+ #   filterset_class = TodoFilter
 
     def destroy(self, request, pk=None, *args, **kwargs):
         todo = self.get_object()
