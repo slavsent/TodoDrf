@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: postgres:15.1-alpine
+    privileged: true
+    restart: always
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: todos
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -q -d todos -U postgres" ]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+    expose:
+      - 8080
+    entrypoint: 
+      sh -c "
+        
+        python manage.py migrate &&
+        python manage.py createusers 3 &&
+        gunicorn config.wsgi -b 0.0.0.0:8080
+      "
+    depends_on:
+      db:
+        condition: service_healthy
+  
+  nginx:
+    build: ./nginx
+    ports:
+      - 8000:80
+    depends_on:
+      - backend
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 80:80
+    depends_on:
+      - nginx
+
